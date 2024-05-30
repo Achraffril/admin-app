@@ -21,12 +21,10 @@ const MenuView = ({classes,getMenu}) =>{
 
     
     useEffect(() => {
-      console.log(getMenu ? getMenu.length :"loading...")
       FilterBy()
       },[] );
     
     const FilterBy =()=>{
-      console.log("I'll filter")
       if(searchClass === "" && searchKey === ""){
         setfilteredMenu(getMenu)
       }
@@ -34,7 +32,6 @@ const MenuView = ({classes,getMenu}) =>{
         setfilteredMenu(getMenu.filter(item => item.title.toLowerCase().includes(searchKey.toLowerCase()) && item.class === parseInt(searchClass)))
       }
       else if(searchKey !=="" ){
-        console.log(2)
         setfilteredMenu(getMenu.filter(item => item.title.toLowerCase().includes(searchKey.toLowerCase())) )
       }
     }
@@ -79,7 +76,6 @@ const MenuView = ({classes,getMenu}) =>{
               method: 'POST',
               body: postData
             });
-            console.log(response)
             if (!response.ok) {
               throw new Error('Failed to update settings');
             }
@@ -284,7 +280,6 @@ const MenuView = ({classes,getMenu}) =>{
             onClick={()=>{if(pagination < filteredMenu.length){
               setPagination(pagination+20)}
               else{
-                console.log('paginate fail')
               }
               
             }}
@@ -543,7 +538,6 @@ export const AddDish = ({classes})=>{
   const handleSubmit = async (event) => {
       event.preventDefault();
       const formData = new FormData();
-      console.log(data_for_adding.title)
       formData.append('title', data_for_adding.title);
       formData.append('price', data_for_adding.price);
       formData.append('description', data_for_adding.description);

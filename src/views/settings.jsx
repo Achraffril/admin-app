@@ -15,9 +15,7 @@ const Settings =  () =>{
           }
           const jsonData = await response.json();
           setSettings(jsonData);
-          console.log(jsonData);
         } catch (error) {
-          // console.log(error)
         }
         
       };

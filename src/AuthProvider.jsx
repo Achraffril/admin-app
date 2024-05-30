@@ -14,21 +14,40 @@ const AuthProvider = ({ children }) => {
     const postData = new FormData();
           postData.append('email',data.email)
           postData.append('password', data.password);
-    try {
-      console.log("Try fetch")
-      const response = await fetch(`${BASE_URL}/api/post/userAuth.php`, {
-        method: "POST",
-        body: postData
-      });
-      const res = await response.json();
-      if (res.transition && res.is_admin ) {        
-        setUser(data);
-        setToken(data.email);
-        localStorage.setItem("site", data.email);
-        navigate("/panel/dashboard");
-      }
+    // try {
+    //   const response = await fetch(`${BASE_URL}/api/post/userAuth.php`, {
+    //     method: "POST",
+    //     body: postData
+    //   });
+    //   const res = await response.json();
+    //   if (res.transition && res.is_admin ) {        
+    //     setUser(data);
+    //     setToken(data.email);
+    //     localStorage.setItem("site", data.email);
+    //     navigate("/panel/dashboard");
+    //   }
 
       
+    // } catch (err) {
+    //   console.error(err);
+    // }
+    try {
+      const response = await fetch(`${BASE_URL}/api/post/userAuth.php`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const res = await response.json();
+      if (res.data) {
+        setUser(res.data.user);
+        setToken(res.token);
+        localStorage.setItem("site", res.token);
+        navigate("/dashboard");
+        return;
+      }
+      throw new Error(res.message);
     } catch (err) {
       console.error(err);
     }

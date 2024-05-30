@@ -18,7 +18,6 @@ const InsertClass = ()=>{
           postData.append('title', formData.title);
           postData.append('description', formData.description);
           postData.append('icon', formData.icon);
-          console.log(formData)   
           try {
             const response = await fetch('https://xse.egd.mybluehost.me/api/post/class_insert.php', {
               method: 'POST',
@@ -41,7 +40,6 @@ const InsertClass = ()=>{
     const  handleChange_forUpdate = (event)=>{
         setUpdated(true) 
       const { name, value } = event.target;
-      console.log(name,value)
       
       
       setFormData({

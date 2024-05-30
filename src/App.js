@@ -35,7 +35,6 @@ function App() {
             setClasses(jsonData)
             
             } catch (error) {
-            // console.log(error)
           }
           try {
             const response = await fetch('https://xse.egd.mybluehost.me/api/get/plats.php');

@@ -4,12 +4,8 @@ import { useAuth } from "./AuthProvider";
 
 const PrivateRoute = () => {
   const user = useAuth();
-  if (!user.token && user.user) return <Navigate to="/panel/login" />;
-  return (
-    <>
-    <Outlet />
-    </>
-  );
+  if (!user.token) return <Navigate to="/panel/login" />;
+  return <Outlet />;
 };
 
 export default PrivateRoute;

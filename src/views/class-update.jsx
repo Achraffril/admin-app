@@ -12,7 +12,6 @@ const UpdateClass = ({classes}) =>{
             const getClasse = classes.filter((item) => item.class_id === parseInt(id));
             setClasse(getClasse.length > 0 ? getClasse[0] : null);
             setFormData(getClasse.length > 0 ? getClasse[0] : null)
-            console.log(getClasse)
 
         }
     }, [id, classes]);
@@ -26,7 +25,6 @@ const UpdateClass = ({classes}) =>{
           postData.append('title', formData.title);
           postData.append('description', formData.description);
           postData.append('icon', formData.icon);
-          console.log(formData)   
           try {
             const response = await fetch('https://xse.egd.mybluehost.me/api/post/class_update.php', {
               method: 'POST',
@@ -49,7 +47,6 @@ const UpdateClass = ({classes}) =>{
     const  handleChange_forUpdate = (event)=>{
         setUpdated(true) 
       const { name, value } = event.target;
-      console.log(name,value)
       
       
       setFormData({
