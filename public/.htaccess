@@ -1,0 +1,13 @@
+
+# </IfModule>
+    RewriteEngine On
+
+# Set the base URL if your app is hosted in a subdirectory
+    RewriteBase /panel
+    
+    # If the request is not for a valid file or directory,
+    # rewrite the URL to serve the index.html file
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ /panel/index.html [L]
+    ErrorDocument 500 /https://xse.egd.mybluehost.me/panel/index.html
